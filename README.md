@@ -24,7 +24,7 @@ All of the core processing logic for this simple service is contained within [`s
 
 ## Exercises
 
-If you're interested in giving a try to improve this basic app, try out some of the following exercises!
+If you're interested in giving a try to improve this basic app, try out some of the following exercises! Most can be done without having to fork the repository, but I recommend doing so to track the changes you've made in your own git history.
 
 1. Currently, only tests for the service itself are available. As an exercise, try adding tests for the CLI and the API by following the documentation for [`typer`](https://typer.tiangolo.com/tutorial/testing/) and [`fastapi`](https://fastapi.tiangolo.com/tutorial/testing/) respectively.
 1. The `ArithmeticService` naively computes with the values given. Can you think of a way that this service might produce errors? Find the spot where there is a bug in the server that would cause a runtime exception, and fix the bug! This can be done in many ways, so feel free to pick whichever way works best for you.
@@ -32,3 +32,8 @@ If you're interested in giving a try to improve this basic app, try out some of 
 1. Add support for running the API with [Docker](https://docs.docker.com/guides/docker-overview/)! Write a [Dockerfile](https://docs.docker.com/reference/dockerfile/)
    - As an extra challenge, write a [`docker-compose.yaml`](https://docs.docker.com/compose/compose-file/) file that spins up the service. Test that you can access the container from the CLI!
 1. Currently, the [`cli`](./src/arithmeticsvc/cli.py) bundles both the [service](./src/arithmeticsvc/arithmetic.py) and the [web client](./src/arithmeticsvc/client.py). Try to separate the two by moving the web client to its own CLI, then try running the new CLI!
+1. This repository doesn't have any automated testing involved in it. Fork this repository and try to write a [Github Actions](https://github.com/features/actions) workflow to run the following tests and checks:
+   - `pytest`
+   - `ruff`
+   - `bandit` <-- Note! You will need to make sure it only scans `src/` since the `tests` diretory uses `asserts`, which causes low-level security scan failures
+   - `mypy`

@@ -28,7 +28,7 @@ class ArithmeticServiceConfigs(BaseSettings):
         env_prefix="ARITHMETIC_",
         env_file=".env",
     )
-    OUTPUT_TYPE: OutputBase = Field(default="dec")
+    OUTPUT_TYPE: OutputBase = Field(default=OutputBase.decimal)
 
 
 class ArithmeticService:
@@ -44,28 +44,32 @@ class ArithmeticService:
 
     def add(self, left: int, right: int) -> str:
         """
-        Adds two numbers and returns the result in the output type specified in the configuration.
+        Adds two numbers and returns the result in the output type specified
+        in the configuration.
         """
         result = left + right
         return self._format_result(result)
 
     def subtract(self, left: int, right: int) -> str:
         """
-        Subtracts two numbers and returns the result in the output type specified in the configuration.
+        Subtracts two numbers and returns the result in the output type specified
+        in the configuration.
         """
         result = left - right
         return self._format_result(result)
 
     def multiply(self, left: int, right: int) -> str:
         """
-        Multiplies two numbers and returns the result in the output type specified in the configuration.
+        Multiplies two numbers and returns the result in the output type specified
+        in the configuration.
         """
         result = left * right
         return self._format_result(result)
 
     def integer_divide(self, left: int, right: int) -> str:
         """
-        Divides two numbers and returns the result in the output type specified in the configuration.
+        Divides two numbers and returns the result in the output type specified
+        in the configuration.
         """
         result = left // right
 

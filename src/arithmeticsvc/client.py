@@ -46,5 +46,5 @@ class ArithmeticClient:
         )
         return response.json()
 
-    async def close(self):
+    async def close(self) -> None:
         await self.client.aclose()

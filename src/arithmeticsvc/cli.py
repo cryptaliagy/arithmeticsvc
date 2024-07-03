@@ -14,7 +14,7 @@ app = typer.Typer()
 
 
 @app.command()
-def add(ctx: typer.Context, left: int, right: int):
+def add(ctx: typer.Context, left: int, right: int) -> None:
     """
     Adds two numbers.
     """
@@ -24,7 +24,7 @@ def add(ctx: typer.Context, left: int, right: int):
 
 
 @app.command()
-def subtract(ctx: typer.Context, left: int, right: int):
+def subtract(ctx: typer.Context, left: int, right: int) -> None:
     """
     Subtracts two numbers.
     """
@@ -34,7 +34,7 @@ def subtract(ctx: typer.Context, left: int, right: int):
 
 
 @app.command()
-def multiply(ctx: typer.Context, left: int, right: int):
+def multiply(ctx: typer.Context, left: int, right: int) -> None:
     """
     Multiplies two numbers.
     """
@@ -44,7 +44,7 @@ def multiply(ctx: typer.Context, left: int, right: int):
 
 
 @app.command()
-def integer_divide(ctx: typer.Context, left: int, right: int):
+def integer_divide(ctx: typer.Context, left: int, right: int) -> None:
     """
     Divides two numbers and returns the integer result.
     """
@@ -66,7 +66,7 @@ def main(
             show_default=True,
         ),
     ] = OutputBase.decimal,
-):
+) -> None:
     """
     A simple CLI for arithmetic operations.
     """
@@ -86,7 +86,7 @@ def web_main(
         str, typer.Option("--host", "-h", help="The host to use.")
     ] = "localhost",
     port: Annotated[int, typer.Option("--port", "-p", help="The port to use.")] = 8000,
-):
+) -> None:
     """
     A simple CLI for arithmetic operations.
     """
@@ -94,7 +94,7 @@ def web_main(
 
 
 @web_app.command(name="add")
-def web_add(ctx: typer.Context, left: int, right: int):
+def web_add(ctx: typer.Context, left: int, right: int) -> None:
     """
     Adds two numbers.
     """
@@ -104,7 +104,7 @@ def web_add(ctx: typer.Context, left: int, right: int):
 
 
 @web_app.command(name="subtract")
-def web_subtract(ctx: typer.Context, left: int, right: int):
+def web_subtract(ctx: typer.Context, left: int, right: int) -> None:
     """
     Subtracts two numbers.
     """
@@ -114,7 +114,7 @@ def web_subtract(ctx: typer.Context, left: int, right: int):
 
 
 @web_app.command(name="multiply")
-def web_multiply(ctx: typer.Context, left: int, right: int):
+def web_multiply(ctx: typer.Context, left: int, right: int) -> None:
     """
     Multiplies two numbers.
     """
@@ -124,7 +124,7 @@ def web_multiply(ctx: typer.Context, left: int, right: int):
 
 
 @web_app.command(name="integer_divide")
-def web_integer_divide(ctx: typer.Context, left: int, right: int):
+def web_integer_divide(ctx: typer.Context, left: int, right: int) -> None:
     """
     Divides two numbers and returns the integer result.
     """
@@ -134,7 +134,7 @@ def web_integer_divide(ctx: typer.Context, left: int, right: int):
 
 
 @web_app.command(name="output")
-def web_output(ctx: typer.Context, output_type: OutputBase):
+def web_output(ctx: typer.Context, output_type: OutputBase) -> None:
     """
     Changes the output type for the results of the arithmetic operations.
     """

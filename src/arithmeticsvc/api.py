@@ -1,4 +1,4 @@
-from typing import Annotated
+from typing import Annotated, Any, AsyncGenerator
 from contextlib import asynccontextmanager
 
 from fastapi import Body, FastAPI
@@ -29,11 +29,11 @@ class Operands(BaseModel):
 
 
 @asynccontextmanager
-async def lifespan(app: FastAPI):
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, Any]:
     """
     Initializes the arithmetic service.
     """
-    app.state.service = ArithmeticService(ArithmeticServiceConfigs())  # type: ignore
+    app.state.service = ArithmeticService(ArithmeticServiceConfigs())
     yield
 
 
@@ -43,7 +43,7 @@ app = FastAPI(lifespan=lifespan)
 @app.post("/add")
 async def add(
     operation: Annotated[Operands, Body(..., title="The operands for the operation")],
-):
+) -> dict[str, str]:
     """
     Adds two numbers.
     """
@@ -55,7 +55,7 @@ async def add(
 @app.post("/subtract")
 async def subtract(
     operation: Annotated[Operands, Body(..., title="The operands for the operation")],
-):
+) -> dict[str, str]:
     """
     Subtracts two numbers.
     """
@@ -67,7 +67,7 @@ async def subtract(
 @app.post("/multiply")
 async def multiply(
     operation: Annotated[Operands, Body(..., title="The operands for the operation")],
-):
+) -> dict[str, str]:
     """
     Multiplies two numbers.
     """
@@ -79,7 +79,7 @@ async def multiply(
 @app.post("/integer_divide")
 async def integer_divide(
     operation: Annotated[Operands, Body(..., title="The operands for the operation")],
-):
+) -> dict[str, str]:
     """
     Divides two numbers and returns the integer result.
     """
@@ -89,7 +89,7 @@ async def integer_divide(
 
 
 @app.get("/output/{output_type}")
-async def output(output_type: OutputBase):
+async def output(output_type: OutputBase) -> dict[str, OutputBase]:
     """
     Changes the output type for the results of the arithmetic operations.
     """
